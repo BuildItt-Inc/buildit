@@ -172,27 +172,6 @@ export function Hero() {
           className="flex flex-col items-center w-full"
         >
 
-          {/* ── Eyebrow badge ── */}
-          <motion.div variants={fadeIn} className="mb-6 md:mb-8">
-            <span
-              className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-full"
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.8125rem',
-                backgroundColor: 'rgba(45,214,123,0.12)',
-                color: 'var(--color-primary)',
-                border: '1px solid rgba(45,214,123,0.3)',
-                letterSpacing: '0.01em',
-              }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full animate-pulse"
-                style={{ backgroundColor: 'var(--color-accent)' }}
-              />
-              AI-Native Digital Agency · Abuja, Nigeria
-            </span>
-          </motion.div>
-
           {/* ── Headline ── */}
           <motion.h1
             id="hero-heading"
@@ -306,40 +285,6 @@ export function Hero() {
                 style={{ color: 'var(--color-primary)' }}
               />
             </Link>
-          </motion.div>
-
-          {/* ── Tech stack tags ── */}
-          <motion.div
-            variants={fadeIn}
-            className="flex flex-wrap items-center justify-center gap-2 mt-10 md:mt-12"
-          >
-            <span
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.8125rem',
-                color: 'var(--color-text-muted)',
-                marginRight: '4px',
-              }}
-            >
-              Built with
-            </span>
-            {TAGS.map((tag) => (
-              <span
-                key={tag.label}
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.75rem',
-                  color: 'var(--color-text-muted)',
-                  backgroundColor: 'var(--color-surface)',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 'var(--radius-sm)',
-                  padding: '3px 10px',
-                  letterSpacing: '0.01em',
-                }}
-              >
-                {tag.label}
-              </span>
-            ))}
           </motion.div>
 
           {/* ── Scroll indicator ── */}

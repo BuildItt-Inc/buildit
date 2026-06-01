@@ -1,6 +1,7 @@
 import { Navbar } from '@/components/sections/navbar'
 import { Hero } from '@/components/sections/hero'
 import { Services } from '@/components/sections/services'
+import { HowWeWork } from '@/components/sections/how-we-work'
 
 export default function HomePage() {
   return (
@@ -9,7 +10,8 @@ export default function HomePage() {
       <main id="main-content">
         <Hero />
         <Services />
-        {/* How We Work — coming next */}
+        <HowWeWork />
+        {/* Featured Work — coming next */}
       </main>
     </>
   )
