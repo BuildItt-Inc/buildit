@@ -260,6 +260,7 @@ export function HowWeWork() {
 
   return (
     <section
+      id="process"
       ref={ref}
       aria-labelledby="process-heading"
       className="section-padding"

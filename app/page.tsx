@@ -1,7 +1,12 @@
+// app/page.tsx
+
 import { Navbar } from '@/components/sections/navbar'
 import { Hero } from '@/components/sections/hero'
 import { Services } from '@/components/sections/services'
 import { HowWeWork } from '@/components/sections/how-we-work'
+import { FeaturedWork } from '@/components/sections/featured-work'
+import { CTA } from '@/components/sections/cta'
+import { Footer } from '@/components/sections/footer'
 
 export default function HomePage() {
   return (
@@ -11,8 +16,10 @@ export default function HomePage() {
         <Hero />
         <Services />
         <HowWeWork />
-        {/* Featured Work — coming next */}
+        <FeaturedWork />
+        <CTA />
       </main>
+      <Footer />
     </>
   )
 }

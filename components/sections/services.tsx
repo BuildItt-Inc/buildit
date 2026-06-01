@@ -269,6 +269,7 @@ export function Services() {
 
   return (
     <section
+      id="services"
       ref={ref}
       aria-labelledby="services-heading"
       className="section-padding"
