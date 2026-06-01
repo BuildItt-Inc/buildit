@@ -3,7 +3,6 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { BuildItLogo } from '@/components/icons/buildit-logo'
@@ -13,29 +12,40 @@ import { cn } from '@/lib/utils'
 
 interface NavLink {
   label: string
-  href: string
+  sectionId: string
 }
 
 /* ─── Constants ──────────────────────────────────────────────── */
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'Services', href: '/services' },
-  { label: 'Work',     href: '/work'     },
-  { label: 'About',    href: '/about'    },
-  { label: 'Contact',  href: '/contact'  },
+  { label: 'Services', sectionId: 'services' },
+  { label: 'Work',     sectionId: 'work'     },
+  { label: 'About',    sectionId: 'process'  },
+  { label: 'Contact',  sectionId: 'contact'  },
 ]
 
-const SCROLL_THRESHOLD = 20 // px before backdrop activates
+const SCROLL_THRESHOLD = 20
+const NAVBAR_HEIGHT = 80
+
+/* ─── Smooth scroll helper ───────────────────────────────────── */
+
+function scrollToSection(id: string, onDone?: () => void) {
+  const el = document.getElementById(id)
+  if (!el) return
+  const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT
+  window.scrollTo({ top, behavior: 'smooth' })
+  onDone?.()
+}
 
 /* ─── Mobile Menu Overlay ────────────────────────────────────── */
 
 interface MobileMenuProps {
   isOpen: boolean
   onClose: () => void
-  pathname: string
+  activeSection: string
 }
 
-function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
+function MobileMenu({ isOpen, onClose, activeSection }: MobileMenuProps) {
   const shouldReduceMotion = useReducedMotion()
 
   // Lock body scroll when menu open
@@ -149,14 +159,12 @@ function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
             {/* Nav links */}
             <ul className="flex flex-col px-4 py-6 gap-1 flex-1" role="list">
               {NAV_LINKS.map((link, i) => {
-                const isActive = pathname === link.href
+                const isActive = activeSection === link.sectionId
                 return (
-                  <motion.li key={link.href} custom={i} variants={linkVariants} initial="hidden" animate="visible">
-                    <Link
-                      href={link.href}
-                      onClick={onClose}
-                      className="flex items-center justify-between w-full px-4 py-3 rounded-lg transition-colors"
-                      data-active={isActive}
+                  <motion.li key={link.sectionId} custom={i} variants={linkVariants} initial="hidden" animate="visible">
+                    <button
+                      onClick={() => scrollToSection(link.sectionId, onClose)}
+                      className="flex items-center justify-between w-full px-4 py-3 rounded-lg transition-colors text-left"
                       style={{
                         fontFamily: 'var(--font-body)',
                         fontWeight: 500,
@@ -166,12 +174,12 @@ function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
                       }}
                       onMouseEnter={e => {
                         if (!isActive) {
-                          (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'var(--color-bg)'
+                          e.currentTarget.style.backgroundColor = 'var(--color-bg)'
                         }
                       }}
                       onMouseLeave={e => {
                         if (!isActive) {
-                          (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'transparent'
+                          e.currentTarget.style.backgroundColor = 'transparent'
                         }
                       }}
                     >
@@ -182,7 +190,7 @@ function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
                           style={{ backgroundColor: 'var(--color-accent)' }}
                         />
                       )}
-                    </Link>
+                    </button>
                   </motion.li>
                 )
               })}
@@ -199,15 +207,14 @@ function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
                 transition: { delay: shouldReduceMotion ? 0 : 0.3, duration: 0.3 },
               }}
             >
-              <Link
-                href="/contact"
-                onClick={onClose}
+              <button
+                onClick={() => scrollToSection('contact', onClose)}
                 className="btn-primary w-full justify-center text-base"
                 style={{ borderRadius: 'var(--radius-lg)' }}
               >
                 Start a Project
                 <ArrowUpRight size={16} strokeWidth={2.5} />
-              </Link>
+              </button>
               <p
                 className="text-center text-sm mt-3"
                 style={{
@@ -228,9 +235,9 @@ function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
 /* ─── Navbar ─────────────────────────────────────────────────── */
 
 export function Navbar() {
-  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
   const shouldReduceMotion = useReducedMotion()
 
   // Scroll detection for backdrop blur
@@ -240,14 +247,29 @@ export function Navbar() {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Run once on mount
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [handleScroll])
 
-  // Close menu on route change
+  // Track which section is in view
   useEffect(() => {
-    setMenuOpen(false)
-  }, [pathname])
+    const observers: IntersectionObserver[] = []
+
+    NAV_LINKS.forEach(({ sectionId }) => {
+      const el = document.getElementById(sectionId)
+      if (!el) return
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(sectionId)
+        },
+        { rootMargin: '-20% 0px -60% 0px' },
+      )
+      obs.observe(el)
+      observers.push(obs)
+    })
+
+    return () => observers.forEach(o => o.disconnect())
+  }, [])
 
   const navbarVariants = {
     initial: { opacity: 0, y: -8 },
@@ -303,31 +325,30 @@ export function Navbar() {
             >
               <ul className="flex items-center gap-1" role="list">
                 {NAV_LINKS.map((link) => {
-                  const isActive = pathname === link.href
+                  const isActive = activeSection === link.sectionId
                   return (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
+                    <li key={link.sectionId}>
+                      <button
+                        onClick={() => scrollToSection(link.sectionId)}
                         className="nav-link px-3 py-2 rounded-md block"
-                        data-active={isActive}
                         style={{
                           color: isActive
                             ? 'var(--color-text)'
                             : 'var(--color-text-muted)',
                         }}
                         onMouseEnter={e => {
-                          (e.currentTarget as HTMLAnchorElement).style.color = 'var(--color-text)'
-                          ;(e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'var(--color-bg)'
+                          e.currentTarget.style.color = 'var(--color-text)'
+                          e.currentTarget.style.backgroundColor = 'var(--color-bg)'
                         }}
                         onMouseLeave={e => {
-                          ;(e.currentTarget as HTMLAnchorElement).style.color = isActive
+                          e.currentTarget.style.color = isActive
                             ? 'var(--color-text)'
                             : 'var(--color-text-muted)'
-                          ;(e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'transparent'
+                          e.currentTarget.style.backgroundColor = 'transparent'
                         }}
                       >
                         {link.label}
-                      </Link>
+                      </button>
                     </li>
                   )
                 })}
@@ -337,21 +358,21 @@ export function Navbar() {
             {/* ── Desktop CTA ── */}
             <div className="hidden md:flex items-center gap-3 flex-shrink-0">
               {/* Optional ghost link */}
-              <Link
-                href="/work"
+              <button
+                onClick={() => scrollToSection('work')}
                 className="btn-ghost hidden lg:inline-flex py-2 px-4 text-sm"
               >
                 See Our Work
-              </Link>
+              </button>
 
               {/* Primary CTA */}
-              <Link
-                href="/contact"
+              <button
+                onClick={() => scrollToSection('contact')}
                 className="btn-primary py-2.5 px-5 text-sm"
               >
                 Start a Project
                 <ArrowUpRight size={15} strokeWidth={2.5} />
-              </Link>
+              </button>
             </div>
 
             {/* ── Mobile Hamburger ── */}
@@ -395,7 +416,7 @@ export function Navbar() {
       <MobileMenu
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
-        pathname={pathname}
+        activeSection={activeSection}
       />
 
       {/* Spacer so content doesn't hide under fixed navbar */}
