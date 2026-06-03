@@ -340,40 +340,40 @@ export function CTA() {
             )}
           </motion.div>
 
-          {/* Or — book a call */}
+          {/* Or — call directly */}
           <motion.p
             custom={0.32}
             variants={fadeUp}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
             style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.875rem',
-              color: 'rgba(240,247,241,0.45)',
-              marginTop: '1.25rem',
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.875rem',
+                color: 'rgba(240,247,241,0.45)',
+                marginTop: '1.25rem',
             }}
-          >
+            >
             Prefer to talk?{' '}
-            <Link
-              href="/contact"
-              style={{
+            <a
+                href="tel:+2348000000000"
+                style={{
                 color: 'rgba(240,247,241,0.7)',
                 textDecoration: 'underline',
                 textDecorationColor: 'rgba(45,214,123,0.4)',
                 textUnderlineOffset: '3px',
                 transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => {
+                fontWeight: 500,
+                }}
+                onMouseEnter={e => {
                 e.currentTarget.style.color = 'var(--color-accent)'
-              }}
-              onMouseLeave={e => {
+                }}
+                onMouseLeave={e => {
                 e.currentTarget.style.color = 'rgba(240,247,241,0.7)'
-              }}
+                }}
             >
-              Book a call directly →
-            </Link>
+                Call +234 800 000 0000
+            </a>
           </motion.p>
-
         </div>
       </div>
     </section>
