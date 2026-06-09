@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, Twitter, Linkedin, Mail,  } from 'lucide-react'
+import { Github, Linkedin, Mail, Facebook, Instagram, X, XIcon } from 'lucide-react'
 import { BuildItLogo } from '@/components/icons/buildit-logo'
 
 /* ─── Types ──────────────────────────────────────────────────── */
@@ -49,9 +49,11 @@ const NAV_GROUPS: { title: string; links: FooterLink[] }[] = [
 ]
 
 const SOCIALS: SocialLink[] = [
-  { label: 'GitHub',   href: 'https://github.com',        icon: Github   },
-  { label: 'Twitter',  href: 'https://x.com/buiditt?s=11',       icon: Twitter  },
+  { label: 'GitHub',   href: 'https://github.com/BuildItt-Inc',        icon: Github   },
+  { label: 'XIcon',  href: 'https://x.com/buiditt?s=11',       icon: XIcon  },
   { label: 'LinkedIn', href: 'https://linkedin.com',      icon: Linkedin },
+  { label: 'Facebook', href: 'https://www.facebook.com/share/1HzDEsTo8g/?mibextid=wwXIfr',    icon: Facebook },
+  { label: 'Instagram', href: 'https://www.instagram.com/buildittai?igsh=c3NhdzlzN20yYTMx&utm_source=qr',   icon: Instagram },
   { label: 'Email',    href: 'mailto:hello@buildit.agency', icon: Mail   },
 ]
 
