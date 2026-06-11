@@ -188,9 +188,9 @@ export function Hero() {
               marginInline: 'auto',
             }}
           >
-            We build digital{' '}
+            We build AI products{' '}
             <br className="hidden sm:block" />
-            products that{' '}
+            for the problems that{' '}
             <span
               style={{
                 position: 'relative',
@@ -205,7 +205,7 @@ export function Hero() {
                   backgroundClip: 'text',
                 }}
               >
-                think.
+                matter.
               </span>
               {/* Underline accent */}
               <motion.span
@@ -240,8 +240,8 @@ export function Hero() {
               marginTop: 'clamp(1.25rem, 2.5vw, 1.75rem)',
             }}
           >
-            Websites, web apps, PWAs, mobile apps, and custom AI solutions —
-            engineered with precision for ambitious teams and bold ideas.
+            AI-powered subscription tools for emerging markets.
+            Built in Abuja. Shipped globally.
           </motion.p>
 
           {/* ── CTAs ── */}
@@ -251,7 +251,7 @@ export function Hero() {
             style={{ marginTop: 'clamp(2rem, 4vw, 2.75rem)' }}
           >
             <Link
-              href="/contact"
+              href="#services"
               className="btn-primary group"
               style={{
                 fontSize: '1rem',
@@ -260,7 +260,7 @@ export function Hero() {
                 boxShadow: '0 4px 20px rgba(10,107,60,0.2)',
               }}
             >
-              Start Building
+              Explore Products
               <ArrowUpRight
                 size={17}
                 strokeWidth={2.5}
@@ -269,7 +269,7 @@ export function Hero() {
             </Link>
 
             <Link
-              href="/work"
+              href="#work"
               className="btn-ghost group"
               style={{
                 fontSize: '1rem',
@@ -277,7 +277,7 @@ export function Hero() {
                 borderRadius: 'var(--radius-lg)',
               }}
             >
-              View Our Work
+              What We've Built
               <ArrowUpRight
                 size={17}
                 strokeWidth={2}

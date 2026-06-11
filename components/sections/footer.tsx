@@ -21,22 +21,22 @@ interface SocialLink {
 
 const NAV_GROUPS: { title: string; links: FooterLink[] }[] = [
   {
-    title: 'Services',
+    title: 'Products',
     links: [
-      { label: 'Websites',        href: '/services#websites'        },
-      { label: 'Web Apps',        href: '/services#web-apps'        },
-      { label: 'Mobile Apps',     href: '/services#mobile'          },
-      { label: 'PWAs',            href: '/services#pwas'            },
-      { label: 'AI Tools',        href: '/services#ai-tools'        },
-      { label: 'AI Integrations', href: '/services#ai-integrations' },
+      { label: 'AgriTrack',  href: '/products/agritrack'  },
+      { label: 'PayVault',   href: '/products/payvault'   },
+      { label: 'LexAI',      href: '/products/lexai'      },
+      { label: 'PulseHR',    href: '/products/pulsehr'    },
+      { label: 'TallyBooks', href: '/products/tallybooks' },
+      { label: 'ClinicOS',   href: '/products/clinicos'   },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About',   href: '/about'   },
-      { label: 'Work',    href: '/work'    },
-      { label: 'Contact', href: '/contact' },
+      { label: 'About',    href: '/about'   },
+      { label: 'Products', href: '/work'    },
+      { label: 'Contact',  href: '/contact' },
     ],
   },
   {
@@ -51,7 +51,7 @@ const NAV_GROUPS: { title: string; links: FooterLink[] }[] = [
 const SOCIALS: SocialLink[] = [
   { label: 'GitHub',   href: 'https://github.com/BuildItt-Inc',        icon: Github   },
   { label: 'XIcon',  href: 'https://x.com/buiditt?s=11',       icon: XIcon  },
-  { label: 'LinkedIn', href: 'https://linkedin.com',      icon: Linkedin },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/builditt/',      icon: Linkedin },
   { label: 'Facebook', href: 'https://www.facebook.com/share/1HzDEsTo8g/?mibextid=wwXIfr',    icon: Facebook },
   { label: 'Instagram', href: 'https://www.instagram.com/buildittai?igsh=c3NhdzlzN20yYTMx&utm_source=qr',   icon: Instagram },
   { label: 'Email',    href: 'mailto:hello@buildit.agency', icon: Mail   },
@@ -94,7 +94,7 @@ export function Footer() {
                 color: 'var(--color-text-muted)',
               }}
             >
-              An AI-native digital agency building products that think. Based in Abuja, working everywhere.
+              An AI-native product studio shipping subscription software for emerging markets. Based in Abuja, building for the world.
             </p>
 
             {/* Socials */}

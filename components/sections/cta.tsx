@@ -148,7 +148,7 @@ export function CTA() {
               marginBottom: '1.25rem',
             }}
           >
-            Ready to build?
+            What's next.
           </motion.p>
 
           {/* Heading */}
@@ -168,9 +168,9 @@ export function CTA() {
               marginBottom: '1.25rem',
             }}
           >
-            Let's turn your idea
+            Our next product
             <br />
-            into a{' '}
+            is in the{' '}
             <span
               style={{
                 background: 'linear-gradient(135deg, var(--color-accent) 0%, #7FFFC4 100%)',
@@ -179,7 +179,7 @@ export function CTA() {
                 backgroundClip: 'text',
               }}
             >
-              real product.
+              works.
             </span>
           </motion.h2>
 
@@ -197,8 +197,8 @@ export function CTA() {
               marginBottom: '2.5rem',
             }}
           >
-            Drop your email and we'll reach out within 24 hours to schedule
-            a free strategy call — no strings, no pitch deck, just a conversation.
+            We build tools the world needs. Drop your email and be first to
+            know what launches next — early access, no pitch deck.
           </motion.p>
 
           {/* ── Email form ── */}
@@ -240,14 +240,14 @@ export function CTA() {
                     color: 'rgba(240,247,241,0.6)',
                   }}
                 >
-                  We'll be in touch within 24 hours.
+                  We'll reach out when it launches.
                 </p>
               </div>
             ) : (
               <form
                 onSubmit={handleSubmit}
                 noValidate
-                aria-label="Get in touch form"
+                aria-label="Early access form"
               >
                 <div
                   className="flex flex-col sm:flex-row gap-3 p-1.5 rounded-xl"
@@ -313,7 +313,7 @@ export function CTA() {
                       </>
                     ) : (
                       <>
-                        Get in touch
+                        Get Early Access
                         <ArrowUpRight size={16} strokeWidth={2.5} />
                       </>
                     )}
@@ -354,9 +354,11 @@ export function CTA() {
                 marginTop: '1.25rem',
             }}
             >
-            Prefer to talk?{' '}
+            Follow us for launch updates.{' '}
             <a
-                href="tel:+2348000000000"
+                href="https://x.com/buiditt"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                 color: 'rgba(240,247,241,0.7)',
                 textDecoration: 'underline',
@@ -372,7 +374,7 @@ export function CTA() {
                 e.currentTarget.style.color = 'rgba(240,247,241,0.7)'
                 }}
             >
-                Call +234 800 000 0000
+                @buiditt
             </a>
           </motion.p>
         </div>

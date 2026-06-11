@@ -18,7 +18,7 @@ interface NavLink {
 /* ─── Constants ──────────────────────────────────────────────── */
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'Services', sectionId: 'services' },
+  { label: 'Products', sectionId: 'services' },
   { label: 'Work',     sectionId: 'work'     },
   { label: 'About',    sectionId: 'process'  },
   { label: 'Contact',  sectionId: 'contact'  },
@@ -208,11 +208,11 @@ function MobileMenu({ isOpen, onClose, activeSection }: MobileMenuProps) {
               }}
             >
               <button
-                onClick={() => scrollToSection('contact', onClose)}
+                onClick={() => scrollToSection('services', onClose)}
                 className="btn-primary w-full justify-center text-base"
                 style={{ borderRadius: 'var(--radius-lg)' }}
               >
-                Start a Project
+                Explore Products
                 <ArrowUpRight size={16} strokeWidth={2.5} />
               </button>
               <p
@@ -222,7 +222,7 @@ function MobileMenu({ isOpen, onClose, activeSection }: MobileMenuProps) {
                   color: 'var(--color-text-muted)',
                 }}
               >
-                Free consultation. No commitment.
+                No agencies. No clients. Just products.
               </p>
             </motion.div>
           </motion.nav>
@@ -359,18 +359,18 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-3 flex-shrink-0">
               {/* Optional ghost link */}
               <button
-                onClick={() => scrollToSection('work')}
+                onClick={() => scrollToSection('services')}
                 className="btn-ghost hidden lg:inline-flex py-2 px-4 text-sm"
               >
-                See Our Work
+                Explore Products
               </button>
 
               {/* Primary CTA */}
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection('services')}
                 className="btn-primary py-2.5 px-5 text-sm"
               >
-                Start a Project
+                See Products
                 <ArrowUpRight size={15} strokeWidth={2.5} />
               </button>
             </div>

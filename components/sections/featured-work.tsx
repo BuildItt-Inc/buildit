@@ -319,7 +319,7 @@ function FeaturedCard({ project, index, inView, reduce }: CardProps) {
               e.currentTarget.style.color = 'var(--color-primary)'
             }}
           >
-            View case study
+            View product
             <ArrowUpRight
               size={15}
               strokeWidth={2.5}
@@ -392,7 +392,7 @@ export function FeaturedWork() {
               marginBottom: '0.75rem',
             }}
           >
-            Selected work
+            What we've built
           </motion.p>
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
@@ -419,7 +419,7 @@ export function FeaturedWork() {
                 className="btn-ghost inline-flex items-center gap-2"
                 style={{ fontSize: '0.9375rem' }}
               >
-                See all projects
+                See all products
                 <ArrowUpRight size={16} strokeWidth={2.5} />
               </Link>
             </motion.div>
@@ -477,7 +477,7 @@ export function FeaturedWork() {
                 marginBottom: '2px',
               }}
             >
-              Your project could be next.
+              We ship. You subscribe. That's the deal.
             </p>
             <p
               style={{
@@ -486,16 +486,16 @@ export function FeaturedWork() {
                 color: 'var(--color-text-muted)',
               }}
             >
-              We take on a limited number of projects each quarter.
+              New products ship when they're ready. Be first to know.
             </p>
           </div>
 
           <Link
-            href="/contact"
+            href="#contact"
             className="btn-primary flex-shrink-0"
             style={{ fontSize: '0.9375rem', padding: '0.75rem 1.5rem' }}
           >
-            Start a project
+            Get Early Access
             <ArrowUpRight size={16} strokeWidth={2.5} />
           </Link>
         </motion.div>

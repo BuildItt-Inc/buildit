@@ -23,10 +23,10 @@ const STEPS: Step[] = [
     id: 1,
     label: 'Discover',
     icon: Search,
-    title: 'We listen before we build.',
+    title: 'We start with the problem.',
     description:
-      'Every project starts with a deep discovery session. We map your goals, users, constraints, and competitive landscape before a single line of code is written.',
-    detail: ['Requirements audit', 'User research', 'Tech scoping', 'Timeline planning'],
+      'Every product starts with the market, not a client brief. We find the problems that matter in emerging markets — the ones that are real, underserved, and solvable with AI.',
+    detail: ['Market research', 'Problem validation', 'User interviews', 'Tech scoping'],
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const STEPS: Step[] = [
     title: 'Clarity before pixels.',
     description:
       'We design systems, not screens. Wireframes, design tokens, and component architecture come first — so building feels inevitable, not improvised.',
-    detail: ['Wireframes', 'Design system', 'Prototype', 'Stakeholder review'],
+    detail: ['Wireframes', 'Design system', 'Prototype', 'Component architecture'],
   },
   {
     id: 3,
@@ -43,17 +43,17 @@ const STEPS: Step[] = [
     icon: Code2,
     title: 'Engineered, not assembled.',
     description:
-      'Clean TypeScript, tested components, CI/CD pipelines from day one. We build with the long game in mind — readable, maintainable, fast.',
+      'Clean TypeScript, tested components, CI/CD pipelines from day one. We build for longevity because we\'re the ones maintaining it.',
     detail: ['Sprints & milestones', 'Code reviews', 'Testing', 'Staging previews'],
   },
   {
     id: 4,
     label: 'Launch',
     icon: Rocket,
-    title: 'Ship with confidence.',
+    title: 'Ship and own it.',
     description:
-      'Deployment, monitoring, and handoff done right. We stay through go-live and beyond — because shipping is the beginning, not the end.',
-    detail: ['Zero-downtime deploy', 'Analytics setup', 'Docs & handoff', 'Post-launch support'],
+      'We deploy, monitor, and run our products long-term. BuildIt owns what it ships — there\'s no client handoff, just a product we\'re committed to.',
+    detail: ['Zero-downtime deploy', 'Analytics setup', 'Subscription billing', 'Long-term ownership'],
   },
 ]
 
@@ -295,7 +295,7 @@ export function HowWeWork() {
                   marginBottom: '0.75rem',
                 }}
               >
-                How we work
+                How we build
               </motion.p>
 
               <motion.h2
@@ -311,9 +311,9 @@ export function HowWeWork() {
                   marginBottom: '1.25rem',
                 }}
               >
-                A process built
+                How we
                 <br />
-                for outcomes.
+                build.
               </motion.h2>
 
               <motion.p
@@ -326,7 +326,7 @@ export function HowWeWork() {
                   marginBottom: '2rem',
                 }}
               >
-                No guesswork. No surprises. Four focused phases designed to move fast without breaking things.
+                Fast. Opinionated. AI-native. We don't take client briefs — we pick problems and build products that solve them.
               </motion.p>
 
               {/* Stat callout */}
@@ -368,7 +368,7 @@ export function HowWeWork() {
                     marginTop: '4px',
                   }}
                 >
-                  Average time to launch
+                  From idea to shipped
                 </span>
               </motion.div>
             </motion.div>

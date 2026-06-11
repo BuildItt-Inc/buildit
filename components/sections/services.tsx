@@ -2,8 +2,9 @@
 // components/sections/services.tsx
 
 import { useRef } from 'react'
+import Link from 'next/link'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { Globe, LayoutDashboard, Smartphone, Zap, Bot, Puzzle } from 'lucide-react'
+import { Sprout, Wallet, ScrollText, Users, Receipt, Stethoscope, ArrowUpRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 /* ─── Types ──────────────────────────────────────────────────── */
@@ -15,6 +16,7 @@ interface Service {
   title: string
   description: string
   tags: string[]
+  status: 'Live' | 'Beta' | 'Coming Soon'
   accent: boolean
 }
 
@@ -23,62 +25,68 @@ interface Service {
 const SERVICES: Service[] = [
   {
     id: 1,
-    icon: Globe,
+    icon: Sprout,
     label: '01',
-    title: 'Websites',
+    title: 'AgriTrack',
     description:
-      'High-performance marketing sites, landing pages, and corporate platforms built for speed, SEO, and conversion. Pixel-precise on every screen.',
-    tags: ['Next.js', 'CMS', 'SEO', 'Animation'],
+      'AI-powered farm management for smallholder farmers across West Africa. Real-time crop monitoring, yield forecasting, and offline-first data capture.',
+    tags: ['Farm management', 'AI forecasting', 'Offline-first'],
+    status: 'Live',
     accent: false,
   },
   {
     id: 2,
-    icon: LayoutDashboard,
+    icon: Wallet,
     label: '02',
-    title: 'Web Apps',
+    title: 'PayVault',
     description:
-      'Full-stack web applications with complex logic, real-time features, authentication, and dashboards. Engineered to scale.',
-    tags: ['React', 'TypeScript', 'APIs', 'Auth'],
-    accent: false,
-  },
-  {
-    id: 3,
-    icon: Zap,
-    label: '03',
-    title: 'PWAs',
-    description:
-      'Progressive web apps that work offline, install on any device, and deliver native-app experiences — without the App Store.',
-    tags: ['Offline-first', 'Push', 'Installable'],
+      'Savings groups and cooperative lending, reimagined for mobile. Offline-first sync, biometric auth, and instant group payouts — built for communities that banks ignore.',
+    tags: ['Fintech', 'Savings groups', 'Mobile-first'],
+    status: 'Live',
     accent: true,
   },
   {
-    id: 4,
-    icon: Smartphone,
-    label: '04',
-    title: 'Mobile Apps',
+    id: 3,
+    icon: ScrollText,
+    label: '03',
+    title: 'LexAI',
     description:
-      'Cross-platform iOS and Android apps built with React Native. One codebase, two stores, full native performance.',
-    tags: ['React Native', 'iOS', 'Android', 'Expo'],
+      'Legal document intelligence for African businesses. Extract clauses, flag risks, and summarise contracts — without paying a lawyer for every read.',
+    tags: ['Legal tech', 'Document AI', 'LLMs'],
+    status: 'Beta',
+    accent: false,
+  },
+  {
+    id: 4,
+    icon: Users,
+    label: '04',
+    title: 'PulseHR',
+    description:
+      'HR and payroll built for Nigerian SMEs. Manage staff, run payroll, and stay compliant — without the complexity of enterprise software.',
+    tags: ['HR', 'Payroll', 'Nigeria'],
+    status: 'Coming Soon',
     accent: false,
   },
   {
     id: 5,
-    icon: Bot,
+    icon: Receipt,
     label: '05',
-    title: 'AI Tools',
+    title: 'TallyBooks',
     description:
-      'Custom AI-powered tools — chatbots, document processors, content engines, and intelligent workflows — built for your exact use case.',
-    tags: ['LLMs', 'RAG', 'Fine-tuning', 'Agents'],
+      'Simple bookkeeping for small businesses in emerging markets. Snap a receipt. Track expenses. Know where your money goes.',
+    tags: ['Accounting', 'Small business', 'Cash flow'],
+    status: 'Coming Soon',
     accent: false,
   },
   {
     id: 6,
-    icon: Puzzle,
+    icon: Stethoscope,
     label: '06',
-    title: 'AI Integrations',
+    title: 'ClinicOS',
     description:
-      'Embed AI into your existing product or workflow. We connect models, APIs, and data pipelines so intelligence becomes part of your stack.',
-    tags: ['OpenAI', 'Anthropic', 'Webhooks', 'APIs'],
+      'Patient management for independent clinics. Appointments, records, and billing — designed for one-doctor practices, not hospital networks.',
+    tags: ['Health tech', 'Clinics', 'Records'],
+    status: 'Coming Soon',
     accent: false,
   },
 ]
@@ -107,6 +115,31 @@ function ServiceCard({ service, index, inView, reduce }: ServiceCardProps) {
       },
     },
   }
+
+  const statusStyles = {
+    Live: {
+      bg: service.accent ? 'rgba(255,255,255,0.15)' : 'rgba(45,214,123,0.12)',
+      color: service.accent ? 'var(--color-accent)' : 'var(--color-primary)',
+      border: service.accent ? 'rgba(255,255,255,0.2)' : 'rgba(45,214,123,0.25)',
+    },
+    Beta: {
+      bg: 'rgba(234,179,8,0.12)',
+      color: '#92400E',
+      border: 'rgba(234,179,8,0.3)',
+    },
+    'Coming Soon': {
+      bg: service.accent ? 'rgba(255,255,255,0.08)' : 'rgba(128,128,128,0.08)',
+      color: service.accent ? 'rgba(240,247,241,0.5)' : 'var(--color-text-muted)',
+      border: service.accent ? 'rgba(255,255,255,0.12)' : 'var(--color-border)',
+    },
+  }[service.status]
+
+  const ctaLabel =
+    service.status === 'Live'
+      ? 'Subscribe'
+      : service.status === 'Beta'
+      ? 'Join Beta'
+      : 'Join Waitlist'
 
   return (
     <motion.article
@@ -139,20 +172,23 @@ function ServiceCard({ service, index, inView, reduce }: ServiceCardProps) {
             }
       }
     >
-      {/* Top row: number label + icon */}
+      {/* Top row: status badge + icon */}
       <div className="flex items-start justify-between mb-5">
         <span
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.6875rem',
-            fontWeight: 500,
-            letterSpacing: '0.08em',
-            color: service.accent
-              ? 'rgba(240,247,241,0.5)'
-              : 'var(--color-text-muted)',
+            fontSize: '0.625rem',
+            fontWeight: 600,
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase' as const,
+            padding: '2px 8px',
+            borderRadius: '9999px',
+            backgroundColor: statusStyles.bg,
+            color: statusStyles.color,
+            border: `1px solid ${statusStyles.border}`,
           }}
         >
-          {service.label}
+          ● {service.status}
         </span>
 
         <div
@@ -202,34 +238,77 @@ function ServiceCard({ service, index, inView, reduce }: ServiceCardProps) {
         {service.description}
       </p>
 
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5 mt-auto">
-        {service.tags.map((tag) => (
-          <span
-            key={tag}
+      {/* Bottom: tags + CTA */}
+      <div className="flex flex-col gap-4 mt-auto">
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5">
+          {service.tags.map((tag) => (
+            <span
+              key={tag}
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.6875rem',
+                fontWeight: 500,
+                letterSpacing: '0.03em',
+                padding: '3px 9px',
+                borderRadius: '4px',
+                backgroundColor: service.accent
+                  ? 'rgba(255,255,255,0.1)'
+                  : 'var(--color-bg)',
+                color: service.accent
+                  ? 'rgba(240,247,241,0.7)'
+                  : 'var(--color-text-muted)',
+                border: `1px solid ${
+                  service.accent
+                    ? 'rgba(255,255,255,0.12)'
+                    : 'var(--color-border)'
+                }`,
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div
+          className="pt-3"
+          style={{
+            borderTop: `1px solid ${
+              service.accent ? 'rgba(255,255,255,0.12)' : 'var(--color-border)'
+            }`,
+          }}
+        >
+          <Link
+            href="#contact"
+            className="inline-flex items-center gap-1.5 transition-colors duration-200"
             style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              fontWeight: 500,
-              letterSpacing: '0.03em',
-              padding: '3px 9px',
-              borderRadius: '4px',
-              backgroundColor: service.accent
-                ? 'rgba(255,255,255,0.1)'
-                : 'var(--color-bg)',
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.875rem',
+              fontWeight: 600,
               color: service.accent
-                ? 'rgba(240,247,241,0.7)'
-                : 'var(--color-text-muted)',
-              border: `1px solid ${
-                service.accent
-                  ? 'rgba(255,255,255,0.12)'
-                  : 'var(--color-border)'
-              }`,
+                ? 'var(--color-accent)'
+                : service.status === 'Coming Soon'
+                ? 'var(--color-text-muted)'
+                : 'var(--color-primary)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = service.accent
+                ? '#ffffff'
+                : 'var(--color-primary-light)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = service.accent
+                ? 'var(--color-accent)'
+                : service.status === 'Coming Soon'
+                ? 'var(--color-text-muted)'
+                : 'var(--color-primary)'
             }}
           >
-            {tag}
-          </span>
-        ))}
+            {ctaLabel}
+            <ArrowUpRight size={14} strokeWidth={2.5} />
+          </Link>
+        </div>
       </div>
 
       {/* Hover accent line — bottom edge */}
@@ -299,7 +378,7 @@ export function Services() {
               marginBottom: '0.75rem',
             }}
           >
-            What we build
+            What we've shipped
           </motion.p>
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
@@ -316,9 +395,9 @@ export function Services() {
                 maxWidth: '480px',
               }}
             >
-              Everything your
+              Products built for
               <br />
-              product needs.
+              markets that matter.
             </motion.h2>
 
             <motion.p
@@ -331,7 +410,7 @@ export function Services() {
                 maxWidth: '340px',
               }}
             >
-              From concept to deployment — we cover the full stack so you can focus on what matters.
+              AI-powered tools for the people the world's software ignores. We build them, own them, and ship them on subscription.
             </motion.p>
           </div>
         </motion.div>
