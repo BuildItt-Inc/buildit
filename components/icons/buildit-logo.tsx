@@ -134,7 +134,7 @@ export function BuildItLogo({
           letterSpacing: '-0.03em',
         }}
       >
-        BuildIt
+        BuildItt
       </span>
     )
   }
@@ -157,7 +157,7 @@ export function BuildItLogo({
           lineHeight: 1,
         }}
       >
-        BuildIt
+        BuildItt
       </span>
     </div>
   )

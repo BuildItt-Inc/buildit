@@ -312,7 +312,7 @@ export function Navbar() {
             {/* ── Logo ── */}
             <Link
               href="/"
-              aria-label="BuildIt — Go to homepage"
+              aria-label="BuildItt — Go to homepage"
               className="flex-shrink-0"
             >
               <BuildItLogo size={36} />
