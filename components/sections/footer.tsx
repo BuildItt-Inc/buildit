@@ -81,7 +81,7 @@ export function Footer() {
         >
           {/* Brand column */}
           <div className="col-span-full md:col-span-1 lg:col-span-2 max-w-xs">
-            <Link href="/" aria-label="BuildIt — homepage">
+            <Link href="/" aria-label="BuildItt — homepage">
               <BuildItLogo size={36} />
             </Link>
 
@@ -185,7 +185,7 @@ export function Footer() {
               color: 'var(--color-text-muted)',
             }}
           >
-            © {year} BuildIt. All rights reserved.
+            © {year} BuildItt. All rights reserved.
           </p>
 
         </div>

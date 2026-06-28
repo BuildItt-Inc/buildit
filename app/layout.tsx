@@ -35,11 +35,11 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'BuildIt — AI-Native Product Studio',
-    template: '%s | BuildIt',
+    default: 'BuildItt — AI-Native Product Studio',
+    template: '%s | BuildItt',
   },
   description:
-    'BuildIt is a product studio shipping AI-powered subscription software for emerging markets. We build it. You subscribe.',
+    'BuildItt is a product studio shipping AI-powered subscription software for emerging markets. We build it. You subscribe.',
   keywords: [
     'product studio',
     'AI products',
@@ -54,15 +54,15 @@ export const metadata: Metadata = {
     'Abuja',
     'African tech',
   ],
-  authors: [{ name: 'BuildIt' }],
-  creator: 'BuildIt',
+  authors: [{ name: 'BuildItt' }],
+  creator: 'BuildItt',
   metadataBase: new URL('https://buildit.agency'),
   openGraph: {
     type: 'website',
     locale: 'en_NG',
     url: 'https://buildit.agency',
-    siteName: 'BuildIt',
-    title: 'BuildIt — AI-Native Product Studio',
+    siteName: 'BuildItt',
+    title: 'BuildItt — AI-Native Product Studio',
     description:
       'We build AI-powered subscription tools for emerging markets. Solving real problems for the people the world\'s software ignores.',
     images: [
@@ -70,13 +70,13 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'BuildIt — AI-Native Product Studio',
+        alt: 'BuildItt — AI-Native Product Studio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BuildIt — AI-Native Product Studio',
+    title: 'BuildItt — AI-Native Product Studio',
     description: 'AI-powered subscription tools for emerging markets. Built in Abuja, shipped globally.',
     images: ['/og-image.png'],
   },
